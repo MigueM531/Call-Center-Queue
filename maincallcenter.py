@@ -1,24 +1,37 @@
-from DataStructures import PriorityQueue, EmptyQueue
+from DataStructures import PriorityQueue, EmptyQueue, Queue
 from typing import Literal
 import mensajes
 
-class Mensaje:
+class ListaMensaje:
+  def __init__(self, mensajes):
+    self.mensajes = mensajes
+
+  def obtener_diccionario(self):
+    lista_aux = []
+    for mensaje_actual in mensajes:
+      lista_aux.append({"mensaje actual" : mensaje_actual, "largo" : len(mensaje_actual.strip())})
+    return lista_aux
+  
+  def obtener_contenido(self, lista_aux, mensaje_actual):
+    contenido = lista_aux.get(mensaje_actual)
+    return contenido
+
+class Mensaje(ListaMensaje):
 
   palabras_clave = {
     "emergencia": 10, "urgente": 8, "fallo crítico": 9,
     "problema": 5, "consulta": 2, "duda": 1}
 
-  def __init__(self, id, contenido) -> None:
+  def super.__init__(self, id) -> None:
     self.id = id
-    self.contenido: str = contenido
-    self.longitud = len(contenido.split())
+    self.contenido = ListaMensaje.obtener_contenido()
+    self.longitud = self.obtener_longitud()
     #self.prioridad = self.calcular_prioridad()
     self.peso_palabras_clave = self.calcular_peso_palabras()
-
-  def obtener_contenido(self, contenido):
-    for mensaje_actual in mensajes:
-      contenido = mensaje_actual
-    return contenido
+  
+  def obtener_longitud(self, contenido, longitud):
+    self.longitud = len(contenido.split())
+    return longitud
 
   #def calcular_prioridad(self) -> int:
   #  prioridad = 0
@@ -29,13 +42,18 @@ class Mensaje:
 
   def calcular_peso_palabras(self) -> int:
     peso_total = 0
-    contenido_lower = self.contenido.lowel().split()
+    contenido_lower = self.contenido.lower().split()
     for palabra, peso in self.palabras_clave.items():
       peso_total += contenido_lower.count(palabra) * peso
     return peso_total
   
-  def encolar(self):
-    ...
+  def encolar(self, contenido_lower):
+    cola_priorizada = Queue()
+    for self.contenido in mensajes:
+      if contenido_lower.peso_total > 0:
+        cola_priorizada.enqueue(self.contenido)
+      print(cola_priorizada)
+    return cola_priorizada
 
 
 class Agente:
@@ -59,4 +77,4 @@ class Agente:
     tiempo_de_respuesta = tiempo_estimado * factor_respuesta
     return tiempo_de_respuesta
 
-  
+m1 = Mensaje(1)
