@@ -1,3 +1,13 @@
+import os
+archivo = "reportes.txt"
+
+with open(archivo, "r", encoding="utf-8") as file:
+    lineas = [line.strip() for line in file.readlines()]
+    print(lineas)
+
+
+
+"""
 mensajes = [
     "Hay un problema importante en el sistema, necesitamos una solución urgente.",
     "Por favor, consulta el manual para resolver la duda que tienes sobre el proceso.",
@@ -10,3 +20,4 @@ mensajes = [
     "Estamos experimentando un fallo crítico, necesitamos tu ayuda con urgencia.",
     "Este problema podría esperar un poco más, pero si es una emergencia, avísanos rápidamente."
 ]
+"""
