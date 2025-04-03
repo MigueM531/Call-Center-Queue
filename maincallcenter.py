@@ -16,7 +16,7 @@ class Mensaje:
     self.id = Mensaje.contador
     self.contenido = contenido
     self.longitud = len(contenido.strip())
-    #self.peso_palabras_clave = self.calcular_peso_palabras()
+    self.peso_mensaje = self.calcular_peso_palabras(contenido)
 
   """
   #def calcular_prioridad(self) -> int:
@@ -27,12 +27,13 @@ class Mensaje:
   #  return prioridad"
   """
 
-  def calcular_peso_palabras(self) -> int:
-    peso_total = 0
-    contenido_lower = self.contenido.lower().split()
-    for palabra, peso in self.palabras_clave.items():
-      peso_total += contenido_lower.count(palabra) * peso
-    return peso_total
+  def calcular_peso_palabras(self, contenido) -> int:
+    for mensaje.contenido in mensajes:
+      if Mensaje.palabras_clave.items() in contenido.lower().strip():
+        for palabra, peso in Mensaje.palabras_clave.items():
+          self.peso_mensaje += contenido.lower().count(palabra) * peso
+    return self.peso_mensaje
+    ...
   
   def encolar(self, contenido_lower):
     cola_priorizada = Queue()
@@ -57,10 +58,11 @@ class Agente:
      return factores.get(self.nivel_experiencia, 1.0)
   
   def calcular_tiempo_respuesta(self, mensaje) -> float:
-    pass
+    pass 
 
 
-#----------------------------------------------------------------------------------------------------
+
+#----------------------------------------------------------------------------------------
 mensajes = [Mensaje(linea) for linea in lineas]
 for mensaje in mensajes:
   print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}; CONTENIDO: {mensaje.contenido}")
