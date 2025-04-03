@@ -5,39 +5,26 @@ from mensajes import lineas
 
 
 class Mensaje:
-
+  contador = 0
   palabras_clave = {
     "emergencia": 10, "urgente": 8, "fallo crítico": 9,
     "problema": 5, "consulta": 2, "duda": 1}
 
-  def __init__(self, id = 0) -> None:
-    self.id = id
-    self.contenido = self.obtener_contenido()
-    #self.longitud = self.obtener_longitud()
-    #self.prioridad = self.calcular_prioridad()
-    self.peso_palabras_clave = self.calcular_peso_palabras()
+  def __init__(self, contenido) -> None:
+    Mensaje.contador += 1
+    self.id = Mensaje.contador
+    self.contenido = contenido
+    self.longitud = len(contenido.strip())
+    #self.peso_palabras_clave = self.calcular_peso_palabras()
 
-  def obtener_id(self):
-    for _ in lineas:
-      Mensaje().id += 1
-    return self.id
-
-  def obtener_contenido(self):
-    for mensaje_actual in lineas:
-      self.contenido = mensaje_actual
-    return self.contenido
-
-  
-  #def obtener_longitud(self, longitud):
-   # self.longitud = len(self.contenido.split())
-    #return longitud
-
+  """
   #def calcular_prioridad(self) -> int:
   #  prioridad = 0
   #  for palabra, peso in self.palabras_clave.items():
   #    if palabra in self.contenido.lower():
   #      prioridad += peso
-  #  return prioridad
+  #  return prioridad"
+  """
 
   def calcular_peso_palabras(self) -> int:
     peso_total = 0
@@ -82,11 +69,7 @@ class Agente:
   def __str__(self):
     return f"agente id: {self.id}, nivel: {self.nivel_experiencia}, estado: {self.estado}"
 
-m1 = Mensaje()
-m2 = Mensaje()
-m1.obtener_id()
-print(m1)
-print(m2)
 
-a1 = Agente(1, "basico", "disponible")
-print(a1)
+mensajes = [Mensaje(linea) for linea in lineas]
+for mensaje in mensajes:
+  print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}; CONTENIDO: {mensaje.contenido}")
