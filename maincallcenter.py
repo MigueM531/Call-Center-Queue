@@ -1,21 +1,7 @@
 from DataStructures import PriorityQueue, EmptyQueue, Queue
 from typing import Literal
+from time import sleep
 from mensajitos import mensajes
-
-
-#class ListaMensaje:
-#  def __init__(self, mensajes):
-#    self.mensajes = mensajes
-#
-#  def obtener_diccionario(self):
-#    lista_aux = []
-#    for mensaje_actual in mensajes:
-#      lista_aux.append({"mensaje actual" : mensaje_actual, "largo" : len(mensaje_actual.strip())})
-#    return lista_aux
-#  
-#  def obtener_contenido(self, lista_aux, mensaje_actual):
-#    contenido = lista_aux.get(mensaje_actual)
-#    return contenido
 
 
 class Mensaje:
@@ -24,18 +10,23 @@ class Mensaje:
     "emergencia": 10, "urgente": 8, "fallo crítico": 9,
     "problema": 5, "consulta": 2, "duda": 1}
 
-  def __init__(self, id) -> None:
+  def __init__(self, id = 0) -> None:
     self.id = id
     self.contenido = self.obtener_contenido()
     #self.longitud = self.obtener_longitud()
     #self.prioridad = self.calcular_prioridad()
     self.peso_palabras_clave = self.calcular_peso_palabras()
 
-  def obtener_contenido(self):
+  def obtener_id(self):
+    for _ in mensajes:
+      Mensaje().id += 1
+    return self.id
 
+  def obtener_contenido(self):
     for mensaje_actual in mensajes:
       self.contenido = mensaje_actual
     return self.contenido
+
   
   #def obtener_longitud(self, longitud):
    # self.longitud = len(self.contenido.split())
@@ -88,7 +79,9 @@ class Agente:
     tiempo_de_respuesta = tiempo_estimado * factor_respuesta
     return tiempo_de_respuesta
 
-m1 = Mensaje(1)
-m2 = Mensaje(2)
+
+m1 = Mensaje()
+m2 = Mensaje()
+m1.obtener_id()
 print(m1)
 print(m2)
