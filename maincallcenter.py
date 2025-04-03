@@ -1,7 +1,7 @@
 from DataStructures import PriorityQueue, EmptyQueue, Queue
 from typing import Literal
 from time import sleep
-from mensajitos import mensajes
+from mensajes import lineas
 
 
 class Mensaje:
@@ -18,12 +18,12 @@ class Mensaje:
     self.peso_palabras_clave = self.calcular_peso_palabras()
 
   def obtener_id(self):
-    for _ in mensajes:
+    for _ in lineas:
       Mensaje().id += 1
     return self.id
 
   def obtener_contenido(self):
-    for mensaje_actual in mensajes:
+    for mensaje_actual in lineas:
       self.contenido = mensaje_actual
     return self.contenido
 
@@ -59,11 +59,11 @@ class Mensaje:
 
 
 class Agente:
-  def __init__(self, id, nivel_experiencia, estado, tiempo_de_respuesta):#pendiente tiempo de respuesta
+  def __init__(self, id, nivel_experiencia, estado):
     self.id: int = id
     self.nivel_experiencia: Literal["basico", "intermedio", "experto"] = nivel_experiencia
     self.estado: Literal["disponible", "ocupado"] = estado
-    self.tiempo_de_respuesta = tiempo_de_respuesta
+    #self.tiempo_de_respuesta = self.calcular_tiempo_respuesta()
 
   def calcular_factor_respuesta(self, nivel_experiencia) -> float:
     if nivel_experiencia == "basico":
@@ -75,13 +75,18 @@ class Agente:
     return factor_respuesta
 
   def calcular_tiempo_respuesta(self, factor_respuesta, tiempo_de_respuesta):
-    tiempo_estimado = (len(Mensaje) / 10) + (self.peso_palabras_clave / 2)
+    tiempo_estimado = (len(Mensaje()) / 10) + (self.peso_palabras_clave / 2)
     tiempo_de_respuesta = tiempo_estimado * factor_respuesta
     return tiempo_de_respuesta
 
+  def __str__(self):
+    return f"agente id: {self.id}, nivel: {self.nivel_experiencia}, estado: {self.estado}"
 
 m1 = Mensaje()
 m2 = Mensaje()
 m1.obtener_id()
 print(m1)
 print(m2)
+
+a1 = Agente(1, "basico", "disponible")
+print(a1)
