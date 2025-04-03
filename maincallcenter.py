@@ -15,7 +15,7 @@ class Mensaje:
     self.id = Mensaje.contador
     self.contenido = contenido
     self.longitud = len(contenido.strip())
-    #self.peso_palabras_clave = self.calcular_peso_palabras()
+    self.peso_mensaje = self.calcular_peso_palabras(contenido)
 
   """
   #def calcular_prioridad(self) -> int:
@@ -26,12 +26,13 @@ class Mensaje:
   #  return prioridad"
   """
 
-  def calcular_peso_palabras(self) -> int:
-    peso_total = 0
-    contenido_lower = self.contenido.lower().split()
-    for palabra, peso in self.palabras_clave.items():
-      peso_total += contenido_lower.count(palabra) * peso
-    return peso_total
+  def calcular_peso_palabras(self, contenido) -> int:
+    for mensaje.contenido in mensajes:
+      if Mensaje.palabras_clave.items() in contenido.lower().strip():
+        for palabra, peso in Mensaje.palabras_clave.items():
+          self.peso_mensaje += contenido.lower().count(palabra) * peso
+    return self.peso_mensaje
+    ...
   
   def encolar(self, contenido_lower):
     cola_priorizada = Queue()
@@ -46,30 +47,11 @@ class Mensaje:
 
 
 class Agente:
-  def __init__(self, id, nivel_experiencia, estado):
-    self.id: int = id
-    self.nivel_experiencia: Literal["basico", "intermedio", "experto"] = nivel_experiencia
-    self.estado: Literal["disponible", "ocupado"] = estado
-    #self.tiempo_de_respuesta = self.calcular_tiempo_respuesta()
-
-  def calcular_factor_respuesta(self, nivel_experiencia) -> float:
-    if nivel_experiencia == "basico":
-      factor_respuesta = 1
-    elif nivel_experiencia == "intermedio":
-      factor_respuesta = 0.75
-    elif nivel_experiencia == "experto":
-      factor_respuesta == 0.5
-    return factor_respuesta
-
-  def calcular_tiempo_respuesta(self, factor_respuesta, tiempo_de_respuesta):
-    tiempo_estimado = (len(Mensaje()) / 10) + (self.peso_palabras_clave / 2)
-    tiempo_de_respuesta = tiempo_estimado * factor_respuesta
-    return tiempo_de_respuesta
-
-  def __str__(self):
-    return f"agente id: {self.id}, nivel: {self.nivel_experiencia}, estado: {self.estado}"
+  pass
 
 
+
+#----------------------------------------------------------------------------------------
 mensajes = [Mensaje(linea) for linea in lineas]
 for mensaje in mensajes:
   print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}; CONTENIDO: {mensaje.contenido}")
