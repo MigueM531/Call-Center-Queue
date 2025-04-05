@@ -2,6 +2,7 @@ from DataStructures import PriorityQueue, EmptyQueue, Queue
 from typing import Literal
 from time import sleep
 from mensajes import lineas
+import time
 
 
 class Mensaje:
@@ -38,7 +39,17 @@ class Mensaje:
 
 
 class Agente:
-  pass
+  def __init__(self, id: int, nivel_experiencia: str, estado: str = "disponible"):
+   self.id = id 
+   self.nivel_experiencia: str = nivel_experiencia 
+   self.estado: str = estado
+  
+  def calcular_factor_respuesta(self) -> float:
+     factores = {"basico": 1.0, "intermedio": 0.75, "experto": 0.5}
+     return factores.get(self.nivel_experiencia, 1.0)
+  
+  def calcular_tiempo_respuesta(self, mensaje) -> float:
+    pass 
 
 
 
