@@ -8,35 +8,26 @@ class Mensaje:
   contador = 0
   palabras_clave = {
     "emergencia": 10, "urgente": 8, "fallo crítico": 9,
-    "problema": 5, "consulta": 2, "duda": 1}
+    "problema": 5, "consulta": 2, "duda": 1
+    }
 
   def __init__(self, contenido) -> None:
     Mensaje.contador += 1
     self.id = Mensaje.contador
     self.contenido = contenido
-    self.longitud = len(contenido.strip())
-    self.peso_mensaje = self.calcular_peso_palabras(contenido)
+    self.longitud = len(contenido.split())
+    self.peso_mensaje: int = 0
 
-  """
-  #def calcular_prioridad(self) -> int:
-  #  prioridad = 0
-  #  for palabra, peso in self.palabras_clave.items():
-  #    if palabra in self.contenido.lower():
-  #      prioridad += peso
-  #  return prioridad"
-  """
-
-  def calcular_peso_palabras(self, contenido) -> int:
-    for mensaje.contenido in mensajes:
-      if Mensaje.palabras_clave.items() in contenido.lower().strip():
-        for palabra, peso in Mensaje.palabras_clave.items():
-          self.peso_mensaje += contenido.lower().count(palabra) * peso
-    return self.peso_mensaje
-    ...
+  def calcular_peso_palabras(self) -> int:
+      self.peso_mensaje = 0
+      for palabra, peso in Mensaje.palabras_clave.items():
+        if palabra in self.contenido.lower():
+          self.peso_mensaje += peso
+      return self.peso_mensaje
   
-  def encolar(self, contenido_lower):
+  def encolar(self):
     cola_priorizada = Queue()
-    for self.contenido in mensajes:
+    for self.peso_mensaje in mensajes:
       if contenido_lower.peso_total > 0:
         cola_priorizada.enqueue(self.contenido)
       print(cola_priorizada)
@@ -54,4 +45,5 @@ class Agente:
 #----------------------------------------------------------------------------------------
 mensajes = [Mensaje(linea) for linea in lineas]
 for mensaje in mensajes:
-  print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}; CONTENIDO: {mensaje.contenido}")
+  print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}; CONTENIDO: {mensaje.contenido}; PESO: {Mensaje.calcular_peso_palabras(self=mensaje)}")
+
