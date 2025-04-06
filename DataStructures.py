@@ -9,9 +9,9 @@ class PriorityQueue:
   # agrega al final de la cola
   def enqueue(self, element: int):
     self.__queue.append(element)
-    if(self.__priority == "min"):
+    if(self.__priority == "max"):
       self.__queue.sort()
-    elif(self.__priority == "max"):
+    elif(self.__priority == "min"):
       self.__queue.sort(reverse = True)
 
   # retorna y elimina el primer elemento que entró
