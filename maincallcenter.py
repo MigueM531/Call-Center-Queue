@@ -1,4 +1,4 @@
-from DataStructures import PriorityQueue, EmptyQueue, Queue
+from DataStructures import PriorityQueue, EmptyQueue
 import time
 from time import sleep
 from mensajes import lineas
@@ -25,12 +25,11 @@ class Mensaje:
           self.peso_mensaje += peso
       return self.peso_mensaje
   
-  def encolar():
-    cola_priorizada = PriorityQueue()
-    mensajes = [Mensaje(linea) for linea in lineas]
+  def encolar(self):
+    cola_priorizada = PriorityQueue("min")
     for mensaje in mensajes:
       cola_priorizada.enqueue(mensaje.peso_mensaje)
-    return cola_priorizada[self.id, self.peso_mensaje]
+    return cola_priorizada
 
 
 class Agente:
@@ -50,8 +49,8 @@ class Agente:
 
 #----------------------------------------------------------------------------------------
 mensajes = [Mensaje(linea) for linea in lineas]
-#for mensaje in mensajes:
-#  print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}\
-#        | CONTENIDO: {mensaje.contenido}; PESO: {Mensaje.calcular_peso_palabras(self=mensaje)}")
+for mensaje in mensajes:
+  print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}\
+        | CONTENIDO: {mensaje.contenido}; PESO: {Mensaje.calcular_peso_palabras(self=mensaje)}")
 
-print(f"LISTA DE MENSAJES: {Mensaje.encolar(self=mensajes)}")
+print(f"COLA DE MENSAJES POR PRIORIDAD: {Mensaje.encolar(self=Mensaje)}")
