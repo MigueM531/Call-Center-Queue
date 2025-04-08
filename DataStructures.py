@@ -31,32 +31,3 @@ class PriorityQueue:
 
   def __len__(self):
     return len(self.__queue)
-
-
-class Queue:
-  def __init__(self):
-    self.queue: list[int] = []
-
-  # agrega al final de la cola
-  def enqueue(self, element: int):
-    self.queue.append(element)
-
-  # retorna y elimina el primer elemento que entró
-  def dequeue(self) -> int:
-    if(len(self.queue) == 0):
-      raise EmptyQueue("Cola Vacía...")
-    return self.queue.pop(0)
-
-  # retorna el primer elemento que entró
-  def first(self) -> int:
-    if(len(self.queue) == 0):
-      raise EmptyQueue("Cola Vacía...")
-    return self.queue[0]
-
-  def __repr__(self):
-    return str(self.queue)
-
-  def __len__(self):
-    return len(self.queue)
-
-# UTLIZAR COLA DE PRIORIDAD O COLA NORMAL PARA ENCOLAR MENSAJES
