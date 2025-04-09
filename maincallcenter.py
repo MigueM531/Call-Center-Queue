@@ -31,6 +31,10 @@ class Mensaje:
       cola_priorizada.enqueue(mensaje.peso_mensaje)
     return cola_priorizada
 
+  def __repr__(self):
+    return f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}\
+        | CONTENIDO: {mensaje.contenido}; PESO: {Mensaje.calcular_peso_palabras(self=mensaje)}"
+
 
 class Agente:
   def __init__(self, id: int, nivel_experiencia: str, estado: str = "disponible"):
@@ -50,7 +54,6 @@ class Agente:
 #----------------------------------------------------------------------------------------
 mensajes = [Mensaje(linea) for linea in lineas]
 for mensaje in mensajes:
-  print(f"ID: {mensaje.id}; LONGITUD: {mensaje.longitud}\
-        | CONTENIDO: {mensaje.contenido}; PESO: {Mensaje.calcular_peso_palabras(self=mensaje)}")
+  print(mensaje)
 
 print(f"COLA DE MENSAJES POR PRIORIDAD: {Mensaje.encolar(self=Mensaje)}")
