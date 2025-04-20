@@ -15,7 +15,7 @@ class Mensaje:
     Mensaje.contador_id += 1
     self.id = Mensaje.contador_id
     self.contenido = contenido
-    self.longitud = len(contenido.strip())
+    self.longitud = len(contenido.split())
     self.peso_mensaje: int = 0
     self.calcular_peso_palabras()
 
@@ -34,10 +34,6 @@ class Mensaje:
       cola_priorizada.enqueue(mensaje)
     return cola_priorizada
 
-  def calcular_dificultad_mensaje(self):
-    for _ in mensajes:
-      dificultad_mensaje = self.longitud + self.peso_mensaje
-    return dificultad_mensaje
 
   def __repr__(self):
     return f"ID: {self.id}; LONG: {self.longitud}; PESO: {self.peso_mensaje}"
@@ -49,25 +45,43 @@ class Agente:
    Agente.contador_id += 1
    self.id = Agente.contador_id
    self.nivel_experiencia: str = nivel_experiencia 
+   self.factor_respuesta = 0
    self.estado: str = estado
    self.tiempo_respuesta = 0
+   self.obtener_factor()
    self.calcular_tiempo_respuesta()
   
-  def calcular_tiempo_respuesta(self, mensaje) -> float:
+  def obtener_factor(self):
+    if self.nivel_experiencia == "basico":
+      self.factor_respuesta = 1.0
+    elif self.nivel_experiencia == "intermedio":
+      self.factor_respuesta = 0.75
+    elif self.nivel_experiencia == "experto":
+      self.factor_respuesta = 0.50
     
+    return self.factor_respuesta
+  
+  def calcular_tiempo_respuesta(self) -> float:
+    for mensaje in mensajes:
+     tiempo_estimado = (mensaje.longitud/10) + (mensaje.peso_mensaje/2)
+     self.tiempo_respuesta = tiempo_estimado * self.factor_respuesta
 
-  def calcular_factor_respuesta(self) -> float:
-     factores = {"basico": 1.0, "intermedio": 0.75, "experto": 0.5}
-     return factores.get(self.nivel_experiencia, 1.0)
+    return round(self.tiempo_respuesta) 
+  
+  def __repr__(self):
+    return f"ID: {self.id}; Nivel: {self.nivel_experiencia}; factor: {self.factor_respuesta}; estado:{self.estado}; tiempo:{self.tiempo_respuesta}"
+
     
-
-
 
 #----------------------------------------------------------------------------------------
 mensajes = [Mensaje(linea) for linea in lineas]
-for mensaje in mensajes:
-  print(mensaje)
-cola = Mensaje.encolar()
-print("COLA DE MENSAJES:")
-print(cola)
+#for mensaje in mensajes:
+#  print(mensaje)
+#cola = Mensaje.encolar()
+#print("COLA DE MENSAJES:")
+#print(cola)
 
+agente= Agente("basico")
+agente01= Agente("intermedio")
+print (agente)
+print (agente01)
